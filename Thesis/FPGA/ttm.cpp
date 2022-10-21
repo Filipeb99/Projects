@@ -45,11 +45,6 @@ int main (int argc, char **argv) {
     
     for (int iteration = 0; iteration < 5; ++iteration) ttm(q, fbrPtr, kIdx, values, matrix, output);
     
-    #ifdef FPGA_EMULATOR
-        std::cout << "Verify correctness" << std::endl;
-        for (int alpha = 0; alpha < 3; alpha++) std::cout << output[8 * alpha] << std::endl;
-    #endif
-    
     free(kIdx);
     free(values);
     free(matrix);
