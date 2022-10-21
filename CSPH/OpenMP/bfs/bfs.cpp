@@ -127,17 +127,6 @@ void bottom_up_step(
 
 void bfs_bottom_up(Graph graph, solution* sol)
 {
-    // TODO STUDENTS:
-    //
-    // You will need to implement the "bottom up" BFS here as
-    // described in the handout.
-    //
-    // As a result of your code's execution, sol.distances should be
-    // correctly populated for all nodes in the graph.
-    //
-    // As was done in the top-down case, you may wish to organize your
-    // code by creating subroutine bottom_up_step() that is called in
-    // each step of the BFS process.
 
     vertex_set list1;
     vertex_set_init(&list1, graph->num_nodes);
@@ -170,10 +159,6 @@ void bfs_bottom_up(Graph graph, solution* sol)
 
 void bfs_hybrid(Graph graph, solution* sol)
 {
-    // TODO STUDENTS:
-    //
-    // You will need to implement the "hybrid" BFS here as
-    // described in the handout.
 
     vertex_set list1;
     vertex_set_init(&list1, graph->num_nodes);
