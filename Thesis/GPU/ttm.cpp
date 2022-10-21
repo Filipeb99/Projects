@@ -43,9 +43,6 @@ int main (int argc, char **argv) {
     
     for (int iteration = 0; iteration < 5; ++iteration) ttm(q, tensor, matrix, output);
     
-    std::cout << '\n' << "Verify output!!!" << std::endl;
-    for (int alpha = 0; alpha < 3; alpha++) std::cout << output[64 * alpha] << std::endl;
-    
     cl::sycl::free(tensor.kIdx, q);
     cl::sycl::free(tensor.values, q);
     cl::sycl::free(matrix, q);
