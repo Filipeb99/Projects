@@ -8,11 +8,11 @@
 #include <sstream>
 #include <vector>
 
-#include "common/CycleTimer.h"
-#include "common/graph.h"
-#include "common/grade.h"
+#include "Common/CycleTimer.h"
+#include "Common/graph.h"
+#include "Common/grade.h"
 
-#include "page_rank.h"
+#include "pageRank.h"
 
 #define USE_BINARY_GRAPH 1
 
@@ -25,19 +25,15 @@ int main(int argc, char** argv) {
     int  num_threads = -1;
     std::string graph_filename;
 
-    if (argc < 2)
-    {
-        std::cerr << "Usage: <path/to/graph/file> [num_threads]\n";
-        std::cerr << "  To run results for all thread counts: <path/to/graph/file>\n";
-        std::cerr << "  Run with a certain number of threads: <path/to/graph/file> <num_threads>\n";
+    if (argc < 2) {
+        std::cerr << "Usage: <path/to/graph/file> [num_threads]" << std::endl;
+        std::cerr << "  To run results for all thread counts: <path/to/graph/file>" << std::endl;
+        std::cerr << "  Run with a certain number of threads: <path/to/graph/file> <num_threads>" << std::endl;
         exit(1);
     }
 
     int thread_count = -1;
-    if (argc == 3)
-    {
-        thread_count = atoi(argv[2]);
-    }
+    if (argc == 3) thread_count = atoi(argv[2]);
 
     graph_filename = argv[1];
 
@@ -45,8 +41,7 @@ int main(int argc, char** argv) {
 
     printf("----------------------------------------------------------\n");
     printf("Max system threads = %d\n", omp_get_max_threads());
-    if (thread_count > 0)
-    {
+    if (thread_count > 0) {
         thread_count = std::min(thread_count, omp_get_max_threads());
         printf("Running with %d threads\n", thread_count);
     }
@@ -76,8 +71,7 @@ int main(int argc, char** argv) {
     load_solution_binary(sol_file.c_str(),sol_gold);
 
     //If we want to run on all threads
-    if (thread_count <= -1)
-    {
+    if (thread_count <= -1) {
         //Static num_threads to get consistent usage across trials
         int max_threads = omp_get_max_threads();
 
@@ -87,6 +81,7 @@ int main(int argc, char** argv) {
         for (int i = 1; i < max_threads; i *= 2) {
           num_threads.push_back(i);
         }
+        
         num_threads.push_back(max_threads);
         int n_usage = num_threads.size();
 
@@ -108,8 +103,7 @@ int main(int argc, char** argv) {
         timing << "Threads  Time (Speedup)\n";
 
         //Loop through num_threads values;
-        for (int i = 0; i < n_usage; i++)
-        {
+        for (int i = 0; i < n_usage; i++) {
             printf("----------------------------------------------------------\n");
             std::cout << "Running with " << num_threads[i] << " threads" << std::endl;
             //Set thread count
@@ -143,12 +137,10 @@ int main(int argc, char** argv) {
         std::cout << timing.str();
         printf("----------------------------------------------------------\n");
         std::cout << "Correctness: " << std::endl;
-        if (!pr_check)
-            std::cout << "Page Rank is not Correct" << std::endl;
+        if (!pr_check) std::cout << "Page Rank is not Correct" << std::endl;
     }
     //Run the code with only one thread count and only report speedup
-    else
-    {
+    else {
         bool pr_check = true;
         double* sol1;
         sol1 = (double*)malloc(sizeof(double) * g->num_nodes);
@@ -186,8 +178,7 @@ int main(int argc, char** argv) {
                 thread_count, pagerank_time);
 
         timing << buf;
-        if (!pr_check)
-            std::cout << "Page Rank is not Correct" << std::endl;
+        if (!pr_check) std::cout << "Page Rank is not Correct" << std::endl;
         printf("----------------------------------------------------------\n");
         std::cout << "Your Code: Timing Summary" << std::endl;
         std::cout << timing.str();
