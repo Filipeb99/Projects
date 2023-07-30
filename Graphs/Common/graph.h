@@ -11,7 +11,7 @@ struct graph
     int num_nodes;
 
     // The node reached by vertex i's first outgoing edge is given by
-    // outgoing_edges[outgoing_starts[i]].  To iterate over all
+    // outgoing_edges[outgoing_starts[i]]. To iterate over all
     // outgoing edges, please see the top-down bfs implementation.
     int* outgoing_starts;
     Vertex* outgoing_edges;
@@ -54,7 +54,7 @@ void load_solution_binary(const char* filename, double *solution);
 void store_solution_binary_int(const char* filename, Graph graph, int *sol);
 void load_solution_binary_int(const char* filename, int *solution);
 
-/* Included here to enable inlining. Don't look. */
+/* Included here to enable inlining */
 #include "graph_internal.h"
 
 #endif
