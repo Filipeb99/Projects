@@ -3,7 +3,7 @@
 
 //#define DEBUG
 
-#include "common/graph.h"
+#include "Common/graph.h"
 
 struct solution
 {
