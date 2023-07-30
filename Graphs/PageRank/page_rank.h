@@ -1,7 +1,7 @@
 #ifndef __PAGE_RANK_H__
 #define __PAGE_RANK_H__
 
-#include "common/graph.h"
+#include "Common/graph.h"
 
 void pageRank(Graph g, double* solution, double damping, double convergence);
 
