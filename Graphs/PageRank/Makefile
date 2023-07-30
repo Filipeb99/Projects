@@ -1,6 +1,6 @@
 all: default 
 
-default: page_rank.cpp main.cpp
-	g++ -I ../ -std=c++11 -fopenmp -g -O3 -o pr main.cpp page_rank.cpp ../Common/graph.cpp 
+default: pageRank.cpp main.cpp
+	g++ -I ../ -std=c++11 -fopenmp -g -O3 -o pr main.cpp pageRank.cpp ../Common/graph.cpp 
 clean:
 	rm -rf pr *~ *.*~
