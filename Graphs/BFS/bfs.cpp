@@ -6,8 +6,8 @@
 #include <cstddef>
 #include <omp.h>
 
-#include "../common/CycleTimer.h"
-#include "../common/graph.h"
+#include "../Common/CycleTimer.h"
+#include "../Common/graph.h"
 
 #define ROOT_NODE_ID 0
 #define NOT_VISITED_MARKER -1
@@ -28,12 +28,7 @@ void vertex_set_init(vertex_set* list, int count) {
 // Take one step of "top-down" BFS.  For each vertex on the frontier,
 // follow all outgoing edges, and add all neighboring vertices to the
 // new_frontier.
-void top_down_step(
-    graph* g,
-    vertex_set* frontier,    
-    int* distances,    
-    int depth)
-{
+void top_down_step(graph* g, vertex_set* frontier, int* distances, int depth) {
     int cnt = 0;
     #pragma omp parallel 
     {
@@ -94,13 +89,7 @@ void bfs_top_down(Graph graph, solution* sol) {
     }
 }
 
-
-void bottom_up_step(
-    graph* g,
-    vertex_set* frontier,    
-    int* distances,    
-    int depth)
-{
+void bottom_up_step(graph* g, vertex_set* frontier, int* distances, int depth) {
     int cnt = 0;
     #pragma omp parallel
     {
@@ -125,9 +114,7 @@ void bottom_up_step(
     frontier->count = cnt;
 }
 
-void bfs_bottom_up(Graph graph, solution* sol)
-{
-
+void bfs_bottom_up(Graph graph, solution* sol) {
     vertex_set list1;
     vertex_set_init(&list1, graph->num_nodes);
 
@@ -157,9 +144,7 @@ void bfs_bottom_up(Graph graph, solution* sol)
     }
 }
 
-void bfs_hybrid(Graph graph, solution* sol)
-{
-
+void bfs_hybrid(Graph graph, solution* sol) {
     vertex_set list1;
     vertex_set_init(&list1, graph->num_nodes);
 
